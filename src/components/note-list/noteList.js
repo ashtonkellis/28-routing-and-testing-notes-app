@@ -10,7 +10,7 @@ export default class NoteList extends React.Component {
     return (
       <React.Fragment>
         <h2>Saved Notes</h2>
-        <ul>
+        <ul className="note-list">
           {notes.map((note) => {
             const { _id } = note;
             return (

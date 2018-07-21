@@ -9,29 +9,14 @@ export default class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      notes: [
-        {
-          _id: uuid(),
-          editing: false,
-          completed: false,
-          title: 'title 1',
-          content: 'content 1',
-        },
-        {
-          _id: uuid(),
-          editing: false,
-          completed: false,
-          title: 'title 1',
-          content: 'content 2',
-        },
-      ],
+      notes: [],
     };
 
     this.addNote = this.addNote.bind(this);
     this.removeNote = this.removeNote.bind(this);
   }
 
-  addNote(note) {
+  addNote(note) {    
     const newNote = {
       _id: uuid(),
       editing: false,

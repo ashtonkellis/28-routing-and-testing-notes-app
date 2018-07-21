@@ -1,6 +1,5 @@
 @import "vars";
 
-
 // content
 html, body {
   position: relative; 
@@ -13,7 +12,7 @@ em { font-style: italic; }
 strong { font-weight: bold; }
 
 body {
-  background: $color-darkcyan;
+  background: $color-powder-blue;
   font-size: 16px;
 }
 
@@ -32,7 +31,6 @@ blockquote {
   }
 }
 
-
 // form
 label {
   font-size: 1.25em;
@@ -49,8 +47,7 @@ textarea, input {
   transition: 350ms all;
 
   &:focus {
-    background: $color-black;
-    color: $color-white;
+    background: $color-jasmine;
   }
 
   &::placeholder {

@@ -2,13 +2,6 @@
   * Submit a pull request to your repository
   * Submit a link to your pull request on canvas
   * Set up Travis CI and update your repo to utilize the [Travis CI Github app](https://github.com/marketplace/travis-ci). *Use the free instsallation.*
-  * Submit a question, observation, and how long you spent on Canvas  
-  * DO NOT reuse the same exact SCSS styling as lecture code. Change colors, sizes, and fonts around and find your own branding. **AUTOMATIC 0's will be given for using the same SCSS as lecture code**. 
-
-###### NoteItem
-* should display the notes content and title
-* should display a delete button
-  * `onClick` the note should be removed from the application state
 
 #### Test
 * Test Dashboard
@@ -30,3 +23,10 @@ Add your Travis badge to the top of your README (even if your build is failing) 
 * Utilize local storage for persistence of your data
 * Find a way to use a hashmap in this lab
 * Make it pretty with SCSS
+
+## Submit 
+  a question: 
+  observation: 
+  how long you spent on Canvas:
+
+  * DO NOT reuse the same exact SCSS styling as lecture code. Change colors, sizes, and fonts around and find your own branding. **AUTOMATIC 0's will be given for using the same SCSS as lecture code**. 

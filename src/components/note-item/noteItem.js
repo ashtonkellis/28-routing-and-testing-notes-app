@@ -16,7 +16,7 @@ export default class NoteItem extends React.Component {
   render() {
     const { title, content } = this.props.note;
     return (
-      <li>
+      <li className="note-item">
         <strong>{title}: </strong>
         {content}
         <input 

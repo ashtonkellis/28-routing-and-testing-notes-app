@@ -18,6 +18,8 @@ export default class App extends React.Component {
                   <li><Link to="/dashboard">Dashboard</Link></li>
                 </ul>
               </nav>
+              <nav></nav>
+              <nav></nav>
             </header>
             <Route 
               exact
