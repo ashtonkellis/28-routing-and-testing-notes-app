@@ -3,10 +3,6 @@
   * Submit a link to your pull request on canvas
   * Set up Travis CI and update your repo to utilize the [Travis CI Github app](https://github.com/marketplace/travis-ci). *Use the free instsallation.*
 
-#### Test
-* Test Dashboard
-  * Test the initial state
-  * Test for changes to the state
 * Test NoteCreateForm
   * Test the initial state
   * Test for changes to the state

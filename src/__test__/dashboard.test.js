@@ -1,5 +1,6 @@
 import React from 'react';
 import { configure, mount } from 'enzyme';
+import faker from 'faker';
 import Adapter from 'enzyme-adapter-react-16';
 import Dashboard from '../components/dashboard/dashboard';
 
@@ -10,7 +11,6 @@ describe('Dashboard testing', () => {
 
   beforeEach(() => {
     mountedDashboard = mount(<Dashboard />);
-    console.log('MOUNTED DASHBOARD', mountedDashboard);
   });
 
   afterEach(() => {
@@ -21,14 +21,32 @@ describe('Dashboard testing', () => {
     expect(mountedDashboard.state('notes')).toEqual([]);
   });
 
-  test('Adding a new note to the state', () => {
-    const mockNote = { title: 'mock title', content: 'mock content', _id: '1234' };
+  test('Set state works', () => {
+    const mockNote = { 
+      _id: '1234',
+      title: faker.lorem.words(2), 
+      content: faker.lorem.words(4), 
+    };
 
     mountedDashboard.setState({ notes: [mockNote] });
 
     const savedNote = mountedDashboard.state('notes')[0];
 
     expect(mockNote._id).toBe(savedNote._id);
+    expect(mockNote.title).toBe(savedNote.title);
+    expect(mockNote.content).toBe(savedNote.content);
+  });
+
+  test('Add new note with #addNote method', () => {
+    const mockNote = { 
+      title: faker.lorem.words(2),
+      content: faker.lorem.words(4),
+    };
+
+    mountedDashboard.instance().addNote(mockNote);
+
+    const savedNote = mountedDashboard.state('notes')[0];
+
     expect(mockNote.title).toBe(savedNote.title);
     expect(mockNote.content).toBe(savedNote.content);
   });
