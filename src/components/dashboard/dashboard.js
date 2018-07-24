@@ -1,15 +1,23 @@
 import React from 'react';
 import './dashboard.scss';
 import uuid from 'uuid/v4';
-import noteForm from '../note-form/noteForm';
-import NoteList from '../modal/modal';
+import NoteForm from '../note-form/noteForm';
+import NoteList from '../note-list/noteList';
 
-const testNote = {
+const testNote1 = {
   _id: uuid(),
   editing: false,
   completed: false,
-  title: 'mock title',
-  content: 'mock content',
+  title: 'mock title 1',
+  content: 'mock content 1',
+};
+
+const testNote2 = {
+  _id: uuid(),
+  editing: false,
+  completed: false,
+  title: 'mock title 2',
+  content: 'mock content 2',
 };
 
 export default class Dashboard extends React.Component {
@@ -17,47 +25,45 @@ export default class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      notes: [testNote],
+      notes: [testNote1, testNote2],
     };
-
-    this.addNote = this.addNote.bind(this);
-    this.removeNote = this.removeNote.bind(this);
-    this.updateNote = this.updateNote.bind(this);
   }
 
-  addNote(note) {    
-    const newNote = {
-      _id: uuid(),
-      editing: false,
-      completed: false,
-      ...note,
-    };
-    
-    this.setState({ notes: [...this.state.notes, newNote] });
+  handleCreateNote = (noteToCreate) => {    
+    if (noteToCreate.title && noteToCreate.content) {
+      const newNote = {
+        _id: uuid(),
+        editing: false,
+        completed: false,
+        ...noteToCreate,
+      };
+      
+      this.setState({ notes: [...this.state.notes, newNote] });
+    }
   }
 
-  removeNote(_id) {
-    const updatedNotes = this.state.notes.filter(note => note._id !== _id);
-    this.setState({ notes: updatedNotes });
+  handleUpdateNote = (noteToUpdate) => {
+    const oldNotes = this.state.notes;
+    const newNotes = oldNotes.map(note => (note._id === noteToUpdate._id ? noteToUpdate : note));    
+    this.setState({ notes: newNotes });
   }
 
-  updateNote(updatedNote) {
-    this.setState({ 
-      notes: this.state.notes.map(note => (note._id === updatedNote._id ? note : updatedNote)),
+  handleRemoveNote = (noteToDelete) => {
+    this.setState({
+      notes: this.state.notes.filter(note => note._id !== noteToDelete._id),
     });
   }
   
   render() {
     return (
       <React.Fragment>
-        <noteForm 
-          addNote={ this.addNote }
+        <NoteForm 
+          handleComplete={ this.handleCreateNote }
         />
         <NoteList 
           notes={ this.state.notes }
-          removeNote= { this.removeNote }
-          updateNote={ this.updateNote }
-          addNote={ this.addNote }
+          handleRemoveNote= { this.handleRemoveNote }
+          handleUpdateNote={ this.handleUpdateNote }
         />
       </React.Fragment>
     );

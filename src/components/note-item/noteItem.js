@@ -1,55 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NoteUpdateForm from '../note-update-form/noteUpdateForm';
+import Modal from '../modal/modal';
 import './noteItem.scss';
-import noteForm from '../note-form/noteForm';
+import NoteForm from '../note-form/noteForm';
 
 export default class NoteItem extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-    this.handleContentDoubleClick = this.handleContentDoubleClick.bind(this);
-  }
-  
-  handleClick() {
-    this.props.removeNote(this.props.note._id);
-  }
-
-  handleContentDoubleClick() {
-    console.log('showing update note form');
-    this.props.updateNote({ ...this.props.note, editing: true });
-  }
-  
   render() {
-    const { note, removeNote, updateNote } = this.props;
-
-    const showNoteUpdateForm = () => updateNote({ ...note, editing: true });
-    const hideNoteUpdateForm = () => updateNote({ ...note, editing: false });
-    const updateAndClose = (updatedNote) => {
-      return updateNote({ ...updatedNote, editing: false });
+    const { note, handleRemoveNote, handleUpdateNote } = this.props;
+    const showModal = () => handleUpdateNote({ ...note, editing: true });
+    const hideModal = () => handleUpdateNote({ ...note, editing: false });
+    const updateAndClose = (noteToUpdate) => {
+      return handleUpdateNote({ ...note, ...noteToUpdate, editing: false });
     };
 
     return (
       <li className="note-item">
         <strong>{note.title}: </strong>
-        <p onDoubleClick={ showNoteUpdateForm }>{note.content}</p>
+        <p onDoubleClick={ showModal }>{note.content}</p>
         <input 
           type="button" 
           value="delete" 
-          onClick={ this.handleClick }
+          onClick={ () => handleRemoveNote(note) }
         />
-        <NoteUpdateForm 
+        <Modal 
           show={ note.editing }
-          handleClose={ hideNoteUpdateForm }
+          handleClose={ hideModal }
         >
           <h3>Editing: {note.title}</h3>
-          <noteForm 
-            updateNote={ this.props.updateNote }
+          <NoteForm 
             handleComplete={ updateAndClose }
             note={ note }
           />
-        </NoteUpdateForm>
+        </Modal>
       </li>
     );
   }
@@ -57,6 +39,6 @@ export default class NoteItem extends React.Component {
 
 NoteItem.propTypes = {
   note: PropTypes.object,
-  removeNote: PropTypes.func,
-  updateNote: PropTypes.func,
+  handleRemoveNote: PropTypes.func,
+  handleUpdateNote: PropTypes.func,
 };

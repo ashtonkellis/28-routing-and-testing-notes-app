@@ -12,29 +12,19 @@ export default class noteForm extends React.Component {
     super(props);
 
     this.state = defaultState;
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
-
-    if (this.state.title && this.state.content) {
-      this.props.addNote(this.state);
-      this.setState(defaultState);
-    }
-  }
-
-  handleComplete = (updatedNote) => {
-    this.props.updatedNote(updatedNote);
+    this.props.handleComplete(this.state);
+    this.setState(defaultState);
   }
 
   render() {
@@ -66,7 +56,5 @@ export default class noteForm extends React.Component {
 }
 
 noteForm.propTypes = {
-  addNote: PropTypes.func,
   handleComplete: PropTypes.func,
-  updatedNote: PropTypes.func,
 };
