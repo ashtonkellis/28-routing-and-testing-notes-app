@@ -5,7 +5,7 @@ import './noteList.scss';
 
 export default class NoteList extends React.Component {  
   render() {
-    const { notes, removeNote } = this.props;
+    const { notes } = this.props;
 
     return (
       <React.Fragment>
@@ -17,7 +17,8 @@ export default class NoteList extends React.Component {
               <NoteItem 
                 key={ _id } 
                 note={ note } 
-                removeNote={ removeNote }
+                handleRemoveNote={ this.props.handleRemoveNote }
+                handleUpdateNote={ this.props.handleUpdateNote }
               />
             );
           })}
@@ -29,5 +30,6 @@ export default class NoteList extends React.Component {
 
 NoteList.propTypes = {
   notes: PropTypes.array,
-  removeNote: PropTypes.func,
+  handleRemoveNote: PropTypes.func,
+  handleUpdateNote: PropTypes.func,
 };

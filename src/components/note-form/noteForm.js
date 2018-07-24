@@ -1,36 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './noteCreateForm.scss';
+import './noteForm.scss';
 
 const defaultState = {
   title: '',
   content: '',
 };
 
-export default class NoteCreateForm extends React.Component {
+export default class noteForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = defaultState;
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
-
-    if (this.state.title && this.state.content) {
-      this.props.addNote(this.state);
-      this.setState(defaultState);
-    }
+    this.props.handleComplete(this.state);
+    this.setState(defaultState);
   }
 
   render() {
@@ -61,6 +55,6 @@ export default class NoteCreateForm extends React.Component {
   }
 }
 
-NoteCreateForm.propTypes = {
-  addNote: PropTypes.func,
+noteForm.propTypes = {
+  handleComplete: PropTypes.func,
 };

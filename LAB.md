@@ -1,28 +1,19 @@
-## Submission Instructions
-  * Submit a pull request to your repository
-  * Submit a link to your pull request on canvas
-  * Set up Travis CI and update your repo to utilize the [Travis CI Github app](https://github.com/marketplace/travis-ci). *Use the free instsallation.*
-
-* Test NoteCreateForm
-  * Test the initial state
-  * Test for changes to the state
- 
- #### SCSS
- * Create a `_base`, `_vars`, and `_reset` stylesheet in your `style` directory. The `_reset` can be the same as lecture code. However, do NOT copy lecture code's styles and apply your own styling to your app. 
+#### Test
+* Test your app using Cypress.io. Your test runner should go through the following scenario:
+  * The user arrives at the homepage located at `/`
+  * The user clicks on the `Dasboard` link in the navbar and should see the `Dashboard` component form to enter a note. In addition, the URL pathname should now be `/dashboard`.
+  * The user enters a title and content into the input fields and submits the form to create a new note.
+  * A new note should be displayed on the page in an unordered list.
+ * Write any combination of explicit/implicit assertion statements in order to test your app. You will get full credit for testing if a TA can run your tests in Cypress and see the required scenario take place. 
 
 #### Documentation  
-Add your Travis badge to the top of your README (even if your build is failing) and write a description of the project. 
+Write a description of the project in your README.md
 
-#### Stretch Goals
-* Read [Enzyme testing docs](https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md) and write more tests for your components.
-* Create an `updateNote` handler that updates a note based off its `_id`. 
-* Utilize local storage for persistence of your data
-* Find a way to use a hashmap in this lab
-* Make it pretty with SCSS
-
-## Submit 
-  a question: 
-  observation: 
-  how long you spent on Canvas:
-
-  * DO NOT reuse the same exact SCSS styling as lecture code. Change colors, sizes, and fonts around and find your own branding. **AUTOMATIC 0's will be given for using the same SCSS as lecture code**. 
+## Submission Instructions
+  * Continue working off Lab 28
+  * Work in a branch on your fork called `lab-30`
+  * Submit a pull request to this repository
+  * Submit a link to your pull request on canvas
+  * Submit an observation and how long you spent on canvas 
+  * No Travis CI setup required for this lab
+  * **Copying of lecture code's SCSS styles will be an automatic 0**

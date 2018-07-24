@@ -1,29 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Modal from '../modal/modal';
 import './noteItem.scss';
+import NoteForm from '../note-form/noteForm';
 
 export default class NoteItem extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-  
-  handleClick() {
-    this.props.removeNote(this.props.note._id);
-  }
-  
   render() {
-    const { title, content } = this.props.note;
+    const { note, handleRemoveNote, handleUpdateNote } = this.props;
+    const showModal = () => handleUpdateNote({ ...note, editing: true });
+    const hideModal = () => handleUpdateNote({ ...note, editing: false });
+    const updateAndClose = (noteToUpdate) => {
+      return handleUpdateNote({ ...note, ...noteToUpdate, editing: false });
+    };
+
     return (
       <li className="note-item">
-        <strong>{title}: </strong>
-        {content}
+        <strong>{note.title}: </strong>
+        <p onDoubleClick={ showModal }>{note.content}</p>
         <input 
           type="button" 
           value="delete" 
-          onClick={ this.handleClick }
+          onClick={ () => handleRemoveNote(note) }
         />
+        <Modal 
+          show={ note.editing }
+          handleClose={ hideModal }
+        >
+          <h3>Editing: {note.title}</h3>
+          <NoteForm 
+            handleComplete={ updateAndClose }
+            note={ note }
+          />
+        </Modal>
       </li>
     );
   }
@@ -31,5 +39,6 @@ export default class NoteItem extends React.Component {
 
 NoteItem.propTypes = {
   note: PropTypes.object,
-  removeNote: PropTypes.func,
+  handleRemoveNote: PropTypes.func,
+  handleUpdateNote: PropTypes.func,
 };
