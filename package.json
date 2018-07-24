@@ -10,7 +10,7 @@
     }
   },
   "scripts": {
-    "test": "eslint --fix . && jest --coverage",
+    "test": "eslint --fix .",
     "testWatch": "jest --coverage --watchAll",
     "test-nolint": "jest --coverage",
     "watch": "webpack-dev-server --config webpack.dev.js",

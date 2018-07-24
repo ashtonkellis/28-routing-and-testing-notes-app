@@ -1,30 +1,3 @@
-#### Feature Tasks 
-Refactor and add the following components 
-
-###### NoteUpdateForm 
-Create a NoteUpdateForm component that inherits a note through `props.children`, and onSubmit is able to update the App's state with an updated note. *This is equivalent to lecture code's Modal component*.
-
-###### Refactor the NoteItem to have the following behavior
-If the user double clicks on the notes content it should switch to the Edit View  
-* Default view  
-  * Display the notes content and a delete button
-  * Display a delete button that will remove the Note from the application's state
-* Edit View 
-  * Show the NoteUpdateForm and a Cancel Button
-    * onSubmit or click of the cancel button in NoteUpdateForm it should switch back to the default view
-
-###### App Component Tree
-Your components should be nested in the following layout  
-``` 
-App
-  noteForm
-  NoteList
-    NoteItem
-      NoteUpdateForm
-```
-component: NoteForm
-
-
 #### Test
 * Test your app using Cypress.io. Your test runner should go through the following scenario:
   * The user arrives at the homepage located at `/`
