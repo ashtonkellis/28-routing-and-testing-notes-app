@@ -1,19 +1,28 @@
 import React from 'react';
 import './dashboard.scss';
 import uuid from 'uuid/v4';
-import NoteCreateForm from '../note-create-form/noteCreateForm';
-import NoteList from '../note-list/noteList';
+import noteForm from '../note-form/noteForm';
+import NoteList from '../modal/modal';
+
+const testNote = {
+  _id: uuid(),
+  editing: false,
+  completed: false,
+  title: 'mock title',
+  content: 'mock content',
+};
 
 export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      notes: [],
+      notes: [testNote],
     };
 
     this.addNote = this.addNote.bind(this);
     this.removeNote = this.removeNote.bind(this);
+    this.updateNote = this.updateNote.bind(this);
   }
 
   addNote(note) {    
@@ -31,16 +40,24 @@ export default class Dashboard extends React.Component {
     const updatedNotes = this.state.notes.filter(note => note._id !== _id);
     this.setState({ notes: updatedNotes });
   }
+
+  updateNote(updatedNote) {
+    this.setState({ 
+      notes: this.state.notes.map(note => (note._id === updatedNote._id ? note : updatedNote)),
+    });
+  }
   
   render() {
     return (
       <React.Fragment>
-        <NoteCreateForm 
+        <noteForm 
           addNote={ this.addNote }
         />
         <NoteList 
           notes={ this.state.notes }
           removeNote= { this.removeNote }
+          updateNote={ this.updateNote }
+          addNote={ this.addNote }
         />
       </React.Fragment>
     );
